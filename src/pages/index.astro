@@ -4,9 +4,13 @@ import InvitationCard from '../components/InvitationCard.astro';
 import Countdown from '../components/Countdown.vue';
 import RsvpModal from '../components/RsvpModal.vue';
 import AddToCalendar from '../components/AddToCalendar.vue';
+import StarIntro from '../components/StarIntro.vue';
 ---
 
 <Layout>
+  <!-- Theater-style Star Iris Zoom Entrance Animation -->
+  <StarIntro client:load />
+
   <!-- Main Card with exact visual layout from the photo -->
   <section class="card-presentation-area">
     <InvitationCard />
@@ -55,6 +59,15 @@ import AddToCalendar from '../components/AddToCalendar.vue';
       </p>
       <div class="footer-signature">
         <span>🥂 ¡Te espero! 🥂</span>
+      </div>
+      <div class="replay-intro-wrap">
+        <button 
+          id="replay-btn" 
+          class="replay-btn" 
+          onclick="window.dispatchEvent(new CustomEvent('replay-star-intro'))"
+        >
+          ✨ Ver animación de entrada
+        </button>
       </div>
     </footer>
   </section>
@@ -156,5 +169,33 @@ import AddToCalendar from '../components/AddToCalendar.vue';
   letter-spacing: 0.12em;
   color: #f7e28b;
   text-transform: uppercase;
+}
+
+.replay-intro-wrap {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.replay-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+  padding: 8px 16px;
+  color: #c0c6d6;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.replay-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: #f7e28b;
+  color: #f7e28b;
+  transform: translateY(-1px);
 }
 </style>
