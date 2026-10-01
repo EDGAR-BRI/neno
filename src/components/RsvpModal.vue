@@ -27,6 +27,7 @@
 
             <!-- Form -->
             <form @submit.prevent="sendWhatsApp" class="rsvp-form">
+              <!-- Campo de nombre (removido por ahora)
               <div class="form-group">
                 <label for="name">Tu Nombre Completo</label>
                 <input
@@ -34,9 +35,9 @@
                   v-model="guestName"
                   type="text"
                   placeholder="Ej. Sofía Martínez"
-                  required
                 />
               </div>
+              -->
 
               <div class="form-group">
                 <label>¿Asistirás a la fiesta?</label>
@@ -108,19 +109,9 @@ const companions = ref(0);
 const customMessage = ref('');
 
 const sendWhatsApp = () => {
-  if (!guestName.value.trim()) return;
-
   const isGoing = attendanceStatus.value === 'si';
   let text = `🎉 *CONFIRMACIÓN DE ASISTENCIA*\n\n`;
-  text += `👤 *Invitado:* ${guestName.value.trim()}\n`;
-  text += `✨ *¿Asistirá?:* ${isGoing ? '¡Sí, con mucho gusto confirmada mi asistencia! 🥳' : 'Lamentablemente no podré asistir esta vez 🥺'}\n`;
-  
-  /* Comentado por ahora:
-  if (isGoing) {
-    const total = 1 + companions.value;
-    text += `👥 *Total de personas:* ${total} (${total === 1 ? 'Solo yo' : `Yo + ${companions.value} acompañante(s)`})\n`;
-  }
-  */
+  text += `✨ *Respuesta:* ${isGoing ? '¡Hola! Confirmo con mucho gusto mi asistencia a tu cumpleaños 🥳' : '¡Hola! Lamentablemente no podré asistir esta vez 🥺'}\n`;
 
   if (customMessage.value.trim()) {
     text += `💌 *Mensaje:* ${customMessage.value.trim()}\n`;
@@ -128,7 +119,8 @@ const sendWhatsApp = () => {
 
   text += `\n📅 *Evento:* Cumpleaños - Sábado 03 de Octubre a las 5:30PM\n📍 *Ubicación:* https://maps.app.goo.gl/2YRbVZ77zuzh4L7CA`;
 
-  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  // WhatsApp number: +584125129709
+  const waUrl = `https://api.whatsapp.com/send?phone=584125129709&text=${encodeURIComponent(text)}`;
   window.open(waUrl, '_blank');
   isOpen.value = false;
 };

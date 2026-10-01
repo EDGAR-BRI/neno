@@ -34,28 +34,18 @@
             <h3 class="loc-title">Ubicación del Evento</h3>
             <p class="loc-place-name">Mi casa</p>
             <p class="loc-desc">
-              ¡Te espero para celebrar juntos en grande! Puedes abrir la ruta directamente en tu aplicación favorita:
+              Toca para abrir la ubicación con la aplicación de mapas que prefieras:
             </p>
 
             <div class="map-actions">
               <a 
-                :href="googleMapsUrl" 
+                :href="locationUrl" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="map-btn gmaps"
+                class="map-btn open-location"
               >
-                <span class="btn-emoji">🗺️</span>
-                <span>Abrir en Google Maps</span>
-              </a>
-
-              <a 
-                :href="wazeUrl" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="map-btn waze"
-              >
-                <span class="btn-emoji">🚗</span>
-                <span>Abrir en Waze</span>
+                <span class="btn-emoji">📍</span>
+                <span>Abrir Ubicación</span>
               </a>
             </div>
           </div>
@@ -69,9 +59,8 @@ import { ref } from 'vue';
 
 const isOpen = ref(false);
 
-// Real event location coordinates and maps link
-const googleMapsUrl = 'https://maps.app.goo.gl/2YRbVZ77zuzh4L7CA';
-const wazeUrl = 'https://waze.com/ul?ll=10.033819,-69.400511&navigate=yes';
+// Real event location
+const locationUrl = 'https://maps.app.goo.gl/2YRbVZ77zuzh4L7CA';
 </script>
 
 <style scoped>
@@ -219,17 +208,19 @@ const wazeUrl = 'https://waze.com/ul?ll=10.033819,-69.400511&navigate=yes';
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.map-btn.gmaps {
-  background: #1a73e8;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+.map-btn.open-location {
+  background: linear-gradient(135deg, #1f2229 0%, #0d0e12 100%);
+  color: #f7e28b;
+  border: 1px solid rgba(212, 175, 55, 0.7);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), 0 0 10px rgba(212, 175, 55, 0.2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
-.map-btn.waze {
-  background: #33ccff;
-  color: #0b3954;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(51, 204, 255, 0.3);
+.map-btn.open-location:hover {
+  background: #111318;
+  border-color: #f7e28b;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
 .map-btn:hover {
