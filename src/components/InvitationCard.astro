@@ -1,0 +1,248 @@
+---
+import Sparkles from './Sparkles.vue';
+import LocationModal from './LocationModal.vue';
+---
+
+<div class="invitation-card-container">
+  <!-- Card Visual Frame matching the 9:16 aspect ratio -->
+  <div class="invitation-frame">
+    <!-- Clean background image with silver sequins, stars and disco balls -->
+    <img 
+      src="/assets/background.jpg" 
+      alt="Fondo de fiesta con lentejuelas, estrellas brillantes y esferas de discoteca" 
+      class="bg-image"
+    />
+
+    <!-- Interactive Twinkling Sparkles on Stars & Disco Balls -->
+    <Sparkles client:load />
+
+    <!-- Content overlay positioned exactly over the torn-paper center -->
+    <div class="card-content">
+      <!-- Header: IT'S MY BIRTHDAY -->
+      <header class="header-section">
+        <h1 class="birthday-title">
+          <span>IT'S MY</span>
+          <span>BIRTHDAY</span>
+        </h1>
+      </header>
+
+      <!-- Subtitle: Acompáñame a cantar mi cumpleaños.. -->
+      <section class="phrase-section">
+        <p class="invite-phrase">
+          <span>Acompáñame</span>
+          <span>a cantar mi</span>
+          <span>cumpleaños..</span>
+        </p>
+      </section>
+
+      <!-- Date & Time Box with Editorial Borders -->
+      <section class="datetime-section">
+        <div class="top-divider"></div>
+        
+        <div class="datetime-grid">
+          <div class="day-col">
+            <span class="day-text">Sábado</span>
+          </div>
+
+          <div class="date-col">
+            <span class="number-text">03</span>
+          </div>
+
+          <div class="time-col">
+            <span class="time-text">5 :30PM</span>
+          </div>
+        </div>
+
+        <div class="bottom-divider-wrapper">
+          <div class="bottom-line-left"></div>
+          <span class="month-text">Octubre</span>
+          <div class="bottom-line-right"></div>
+        </div>
+      </section>
+
+      <!-- Location Section: Pin + Mi casa (Clickable with directions modal) -->
+      <section class="location-section">
+        <LocationModal client:load />
+      </section>
+    </div>
+  </div>
+</div>
+
+<style>
+.invitation-card-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.invitation-frame {
+  position: relative;
+  width: 100%;
+  /* Preserve original reference ratio: 576 x 1024 (~9:16) */
+  aspect-ratio: 576 / 1024;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Text & Content Layer */
+.card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Percentages fine-tuned to match exact coordinates in the photo */
+  padding-top: 27.5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: center;
+}
+
+/* 1. IT'S MY BIRTHDAY */
+.header-section {
+  width: 100%;
+  margin-bottom: 5.5%;
+}
+
+.birthday-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.14;
+  color: #111111;
+  text-transform: uppercase;
+}
+
+/* 2. Acompáñame a cantar mi cumpleaños.. */
+.phrase-section {
+  width: 100%;
+  margin-bottom: 5.8%;
+}
+
+.invite-phrase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.35rem, 6.2vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.26;
+  color: #111111;
+  letter-spacing: 0.01em;
+}
+
+/* 3. Date & Time Section */
+.datetime-section {
+  width: 82%;
+  max-width: 290px;
+  margin-bottom: 5.5%;
+  position: relative;
+}
+
+.top-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #2b2b2b;
+  margin-bottom: 4px;
+}
+
+.datetime-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.day-col {
+  flex: 1;
+  text-align: center;
+}
+
+.day-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 5vw, 1.45rem);
+  font-weight: 400;
+  color: #111111;
+}
+
+.date-col {
+  flex: 0 0 auto;
+  padding: 0 10px;
+  line-height: 1;
+}
+
+.number-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 11vw, 3.5rem);
+  font-weight: 700;
+  color: #0b0c0e;
+  display: block;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.time-col {
+  flex: 1;
+  text-align: center;
+}
+
+.time-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 5vw, 1.45rem);
+  font-weight: 400;
+  color: #111111;
+  white-space: nowrap;
+}
+
+/* Bottom line broken by "Octubre" */
+.bottom-divider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.bottom-line-left,
+.bottom-line-right {
+  flex: 1;
+  height: 1px;
+  background-color: #333333;
+}
+
+.month-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.95rem, 4.3vw, 1.25rem);
+  font-weight: 400;
+  color: #121316;
+  padding: 0 10px;
+  line-height: 1;
+}
+
+/* 4. Location Section */
+.location-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+}
+</style>

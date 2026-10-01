@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InvitationCard from '../components/InvitationCard.astro';
+import Countdown from '../components/Countdown.vue';
+import RsvpModal from '../components/RsvpModal.vue';
+import AddToCalendar from '../components/AddToCalendar.vue';
+---
+
+<Layout>
+  <!-- Main Card with exact visual layout from the photo -->
+  <section class="card-presentation-area">
+    <InvitationCard />
+  </section>
+
+  <!-- Interactive Section: Countdown, RSVP, Calendar, Notes -->
+  <section class="interactive-panel">
+    <!-- Real-time Countdown -->
+    <div class="panel-item">
+      <Countdown client:load />
+    </div>
+
+    <!-- RSVP Button with Modal and WhatsApp -->
+    <div class="panel-item action-primary">
+      <RsvpModal client:load />
+    </div>
+
+    <!-- Add to Calendar -->
+    <div class="panel-item">
+      <AddToCalendar client:load />
+    </div>
+
+    <!-- Event Detail Cards -->
+    <div class="party-info-grid">
+      <div class="info-card">
+        <span class="info-icon">🪩</span>
+        <div class="info-content">
+          <h4>Dress Code</h4>
+          <p>Glam, brillos y ganas de bailar toda la noche.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <span class="info-icon">🎂</span>
+        <div class="info-content">
+          <h4>Música & Brindis</h4>
+          <p>Bebidas, snacks y el infaltable pastel de cumpleaños.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Friendly Footer Message -->
+    <footer class="invitation-footer">
+      <p class="footer-quote">
+        "Tu presencia es el mejor regalo para hacer esta noche inolvidable."
+      </p>
+      <div class="footer-signature">
+        <span>🥂 ¡Te espero! 🥂</span>
+      </div>
+    </footer>
+  </section>
+</Layout>
+
+<style>
+/* Card Presentation Area */
+.card-presentation-area {
+  width: 100%;
+  position: relative;
+  background-color: #0b0d11;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Interactive Panel below the card */
+.interactive-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 18px 36px;
+  background: linear-gradient(180deg, #101217 0%, #161820 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.panel-item {
+  width: 100%;
+}
+
+.action-primary {
+  margin-top: 4px;
+}
+
+/* Info Cards */
+.party-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.info-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.info-content h4 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1rem;
+  color: #f7e28b;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.info-content p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  color: #b0b4bd;
+  line-height: 1.35;
+}
+
+/* Footer */
+.invitation-footer {
+  margin-top: 14px;
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.footer-signature {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #f7e28b;
+  text-transform: uppercase;
+}
+</style>
